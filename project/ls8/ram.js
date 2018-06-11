@@ -1,6 +1,5 @@
-/**
- * RAM access
- */
+/**  RAM Access  **/
+
 class RAM {
     constructor(size) {
         this.mem = new Array(size);
