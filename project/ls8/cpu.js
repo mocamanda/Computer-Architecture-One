@@ -74,7 +74,7 @@ class CPU {
         // !!! IMPLEMENT ME
 
         // Debugging output
-        
+
         console.log(`${this.PC}: ${IR.toString(2)}`);
 
         // Get the two bytes in memory _after_ the PC in case the instruction
@@ -88,6 +88,12 @@ class CPU {
         // Execute the instruction. Perform the actions for the instruction as
         // outlined in the LS-8 spec.
 
+        switch(IR) {
+            case LDI:
+                
+                break;
+
+        }
         // !!! IMPLEMENT ME
 
         // Increment the PC register to go to the next instruction. Instructions
