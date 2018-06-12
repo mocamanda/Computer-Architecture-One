@@ -91,6 +91,8 @@ class CPU {
         switch(IR) {
             case LDI:
                 // Set the value in a register
+                this.reg[operandA] = operandB;
+                console.log(this.reigs[operandA]);
                 break;
 
         }
