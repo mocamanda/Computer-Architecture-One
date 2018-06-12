@@ -90,7 +90,7 @@ class CPU {
 
         switch(IR) {
             case LDI:
-                
+                // Set the value in a register
                 break;
 
         }
