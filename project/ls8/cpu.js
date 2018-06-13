@@ -6,8 +6,8 @@ const LDI = 0b10011001;
 const PRN = 0b01000011;
 const HLT = 0b00000001;
 
-const ADD = 0b10101000;
 const MUL = 0b10101010;
+const ADD = 0b10101000;
 const SUB = 0b10101001;
 const DIV = 0b10101011;
 const INC = 0b01111000;
@@ -15,6 +15,7 @@ const DEC = 0b01111001;
 const LD = 0b10011000;
 const PRA = 0b01000010;
 const AND = 0b10110011;
+
 const POP = 0b01001100;
 const PUSH = 0b01001101;
 const CALL = 0b01001000;
@@ -28,6 +29,9 @@ const JNE = 0b01010010;
 /**
  * Class for simulating a simple Computer (CPU & memory)
  */
+
+const SP = 7;
+
 class CPU {
 
     /**
@@ -38,6 +42,8 @@ class CPU {
 
         this.reg = new Array(8).fill(0); // General-purpose registers R0-R7
         
+        this.reg[SP] = 0xf4; // Stack Pointer Starting empty at Address F4
+
         // Special-purpose registers
         this.PC = 0; // Program Counter
 
@@ -122,6 +128,17 @@ class CPU {
      * Advances the CPU one cycle
      */
     tick() {
+        const push_it = x => {
+            this.alu('DEC', SP);
+            this.ram.write(this.reg[SP], x);
+        };
+      
+        const pop_it = () => {
+            const popped = this.ram.read(this.reg[SP]);
+            this.alu('INC', SP);
+            return popped;
+        };
+        
         // Load the instruction register (IR--can just be a local variable here)
         // from the memory address pointed to by the PC. (I.e. the PC holds the
         // index into memory of the instruction that's about to be executed
@@ -266,8 +283,13 @@ class CPU {
         // can be 1, 2, or 3 bytes long. Hint: the high 2 bits of the
         // instruction byte tells you how many bytes follow the instruction byte
         // for any particular instruction.
-        const instLen = (IR >> 6) + 1;
-        this.PC += instLen;
+
+        if (IR !== CALL && IR !== JMP && IR !== RET && IR !== JEQ && IR !== JNE) {
+            this.PC += 1 + (IR >> 6);
+        }
+        // const instLen = (IR >> 6) + 1;
+        // this.PC += instLen;
+
         // console.log(InstLen);
         // !!! IMPLEMENT ME
     }
