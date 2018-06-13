@@ -12,7 +12,7 @@ function loadMemory() {
     const program = [];
     const argv = process.argv;
     if (argv.length !== 3) {
-      console.error('usage: node ls8 [filename]');
+      console.error('Usage: Node ls8 [filename]');
       process.exit(1);
     }
     // Hardcoded program to print the number 8 on the console
@@ -42,20 +42,20 @@ function loadMemory() {
     //     // "00000000",
     //     // "00000001"  // HLT       Halt and quit
     
-    // // # mult.ls8
-    //     "10011001", //# LDI R0,8
-    //     "00000000",
-    //     "00001000",
-    //     "10011001", //# LDI R1,9
-    //     "00000001",
-    //     "00001001",
-    //     "10101010", //# MUL R0,R1 <---
-    //     "00000000",
-    //     "00000001",
-    //     "01000011", //# PRN R0
-    //     "00000000",
-    //     "00000001", //# HLT
-    // ];
+    // # mult.ls8
+        "10011001", //# LDI R0,8
+        "00000000",
+        "00001000",
+        "10011001", //# LDI R1,9
+        "00000001",
+        "00001001",
+        "10101010", //# MUL R0,R1 <---
+        "00000000",
+        "00000001",
+        "01000011", //# PRN R0
+        "00000000",
+        "00000001", //# HLT
+    ];
 
     // Load the program into the CPU's memory a byte at a time
     for (let i = 0; i < program.length; i++) {
