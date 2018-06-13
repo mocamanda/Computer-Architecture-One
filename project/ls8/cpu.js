@@ -15,7 +15,6 @@ const DEC = 0b01111001;
 const LD = 0b10011000;
 const PRA = 0b01000010;
 const AND = 0b10110011;
-
 const POP = 0b01001100;
 const PUSH = 0b01001101;
 const CALL = 0b01001000;
@@ -138,7 +137,7 @@ class CPU {
             this.alu('INC', SP);
             return popped;
         };
-        
+
         // Load the instruction register (IR--can just be a local variable here)
         // from the memory address pointed to by the PC. (I.e. the PC holds the
         // index into memory of the instruction that's about to be executed
