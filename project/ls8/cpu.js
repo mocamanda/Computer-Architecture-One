@@ -15,6 +15,7 @@ const DEC = 0b01111001;
 const LD = 0b10011000;
 const PRA = 0b01000010;
 const AND = 0b10110011;
+
 const POP = 0b01001100;
 const PUSH = 0b01001101;
 const CALL = 0b01001000;
