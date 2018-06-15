@@ -21,10 +21,6 @@ const PUSH = 0b01001101;
 const CALL = 0b01001000;
 const RET = 0b00001001;
 const ST = 0b10011010;
-const CMP = 0b10100000;
-const JMP = 0b01010000;
-const JEQ = 0b01010001;
-const JNE = 0b01010010;
 
 /**
  * Class for simulating a simple Computer (CPU & memory)
@@ -226,33 +222,6 @@ class CPU {
 
             case ST:
                 this.ram.write(this.reg[operandA], this.reg[operandB]);
-                break;
-
-            case CMP:
-                if (this.reg[operandA] < this.reg[operandB]) this.FL = 0b00000100;
-                if (this.reg[operandA] > this.reg[operandB]) this.FL = 0b00000010;
-                if (this.reg[operandA] === this.reg[operandB]) this.FL = 0b00000001;
-                // else this.FL = 0b00000000;
-                break;
-
-            case JMP:
-                this.PC = this.reg[operandA];
-                break;
-
-            case JEQ:
-                if (this.FL === 0b00000001) {
-                  this.PC = this.reg[operandA];
-                } else {
-                  this.PC += 1 + (IR >> 6);
-                }
-                break;
-
-            case JNE:
-                if (this.FL !== 0b00000001) {
-                  this.PC = this.reg[operandA];
-                } else {
-                  this.PC += 1 + (IR >> 6);
-                }
                 break;
 
             case LDI:
